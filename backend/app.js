@@ -2,8 +2,26 @@
 import express from 'express';
 // import methodOverride from 'method-override';
 // import morgan from 'morgan';
+import cors from 'cors';
+import menuRoutes from './routes/menuRoutes.js';
 
 const app = express();
+
+// CORS middleware
+app.use(
+	cors({
+		origin: 'http://localhost:3000', // Allow requests from your frontend
+		methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Allowed methods
+		allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+	})
+);
+
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
+// Mount routes
+app.use('/menu', menuRoutes);
 
 //connect to mongoDB
 // const username = encodeURIComponent(process.env.DB_USERNAME);

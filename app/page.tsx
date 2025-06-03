@@ -1,7 +1,7 @@
 'use client';
 import {auth} from '@/components/auth/config';
-import SectionOne from '@/layout/sections/SectionOne';
-import {signOut} from 'firebase/auth';
+import SectionAboutUs from '@/layout/sections/SectionAboutUs';
+import SectionMenu from '@/layout/sections/SectionMenu';
 import {useRouter} from 'next/navigation';
 import {useAuthState} from 'react-firebase-hooks/auth';
 
@@ -16,16 +16,9 @@ export default function Home() {
 		router.push('/sign-up');
 	}
 	return (
-		<div className="flex flex-col items-center h-dvh">
-			<button
-				onClick={() => {
-					signOut(auth);
-					sessionStorage.removeItem('user');
-				}}
-			>
-				Log out
-			</button>
-			<SectionOne />
+		<div className="flex flex-col items-center">
+			<SectionMenu />
+			<SectionAboutUs />
 		</div>
 	);
 }

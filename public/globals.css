@@ -25,6 +25,14 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+h1 {
+	font-size: 3.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+}
+
 .container {
 	padding: 1.5rem; /* 24px */
 }

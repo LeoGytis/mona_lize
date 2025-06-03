@@ -1,4 +1,5 @@
 'use client';
+import Logo from '@/public/images/logo_png.png';
 import Image from 'next/image';
 
 const Footer = () => {
@@ -20,7 +21,7 @@ const Footer = () => {
 				</div>
 				<div className="flex flex-col gap-10">
 					<Image
-						src="/images/logo_orange.png"
+						src={Logo}
 						alt="logo"
 						width={80}
 						height={80}

@@ -1,26 +1,13 @@
 // import 'dotenv/config';
 import express from 'express';
-// import methodOverride from 'method-override';
-// import morgan from 'morgan';
-import cors from 'cors';
+import middleware from './middleware/middleware.js';
 import menuRoutes from './routes/menuRoutes.js';
 
 const app = express();
 
-// CORS middleware
-app.use(
-	cors({
-		origin: 'http://localhost:3000', // Allow requests from your frontend
-		methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Allowed methods
-		allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
-	})
-);
+middleware(app);
 
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-
-// Mount routes
+// Routes
 app.use('/menu', menuRoutes);
 
 //connect to mongoDB
@@ -34,10 +21,3 @@ app.use('/menu', menuRoutes);
 // 	.catch((err) => console.log(err));
 
 app.listen(3001);
-
-//middleware & static files
-// app.use(express.static('public'));
-// app.use(express.urlencoded({extended: true}));
-// app.use(morgan('dev'));
-// // Middleware to support PUT and PATCH via forms
-// app.use(methodOverride('_method'));

@@ -6,6 +6,7 @@ import {useEffect, useState} from 'react';
 
 export default function MenuPage() {
 	const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+	console.log('🔥 : menuItems =>', menuItems);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 

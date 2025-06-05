@@ -1,4 +1,5 @@
 import {Trash2} from 'lucide-react';
+import Image from 'next/image';
 import React, {useState} from 'react';
 import {MenuItem, menuRequests} from '../../service/menuRequests';
 
@@ -62,7 +63,22 @@ const MenuCardForm: React.FC<MenuCardFormProps> = ({
 				if (!item) {
 					await menuRequests.createMenuItem(formData);
 				} else {
-					await menuRequests.updateMenuItem(item.id, formData);
+					// When editing, always include the image data
+					const formDataToSend = new FormData();
+					formDataToSend.append('name', formData.name);
+					formDataToSend.append('description', formData.description);
+					formDataToSend.append('price', formData.price.toString());
+
+					// Send the existing image data directly
+					if (formData.image) {
+						formDataToSend.append('imageData', formData.image.data);
+						formDataToSend.append(
+							'imageContentType',
+							formData.image.contentType
+						);
+					}
+
+					await menuRequests.updateMenuItem(item.id, formDataToSend);
 				}
 			}
 			onUpdate();
@@ -75,13 +91,11 @@ const MenuCardForm: React.FC<MenuCardFormProps> = ({
 	const handleDelete = async () => {
 		if (!item) return;
 
-		if (window.confirm('Are you sure you want to delete this item?')) {
-			try {
-				await menuRequests.deleteMenuItem(item.id);
-				onUpdate();
-			} catch (error) {
-				console.error('Error deleting menu item:', error);
-			}
+		try {
+			await menuRequests.deleteMenuItem(item.id);
+			onUpdate();
+		} catch (error) {
+			console.error('Error deleting menu item:', error);
 		}
 	};
 
@@ -128,7 +142,17 @@ const MenuCardForm: React.FC<MenuCardFormProps> = ({
 					/>
 				</div>
 				<div>
-					<label className="block mb-2">Upload Image</label>
+					<label className="block mb-2">Image</label>
+					{formData.image && !selectedImage && (
+						<div className="mb-4 relative w-full h-48">
+							<Image
+								src={`data:${formData.image.contentType};base64,${formData.image.data}`}
+								alt={formData.name}
+								fill
+								className="object-cover rounded-lg"
+							/>
+						</div>
+					)}
 					<input
 						type="file"
 						name="image"
@@ -136,6 +160,11 @@ const MenuCardForm: React.FC<MenuCardFormProps> = ({
 						onChange={handleImageChange}
 						className="w-full p-2 border rounded bg-slate-200 cursor-pointer"
 					/>
+					{selectedImage && (
+						<p className="mt-2 text-sm text-gray-600">
+							New image selected: {selectedImage.name}
+						</p>
+					)}
 				</div>
 			</div>
 			<div className="mt-4 flex justify-between">

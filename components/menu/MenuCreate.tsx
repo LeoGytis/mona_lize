@@ -2,11 +2,11 @@ import {Plus} from 'lucide-react';
 import React, {useState} from 'react';
 import MenuCardForm from './MenuCardForm';
 
-interface CreateMenuSectionProps {
+interface MenuCreateProps {
 	onUpdate: () => void;
 }
 
-const CreateMenuSection: React.FC<CreateMenuSectionProps> = ({onUpdate}) => {
+const MenuCreate: React.FC<MenuCreateProps> = ({onUpdate}) => {
 	const [isCreating, setIsCreating] = useState(false);
 
 	const handleCancel = () => {
@@ -42,4 +42,4 @@ const CreateMenuSection: React.FC<CreateMenuSectionProps> = ({onUpdate}) => {
 	);
 };
 
-export default CreateMenuSection;
+export default MenuCreate;

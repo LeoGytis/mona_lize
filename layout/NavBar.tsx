@@ -26,27 +26,27 @@ const NavLink: React.FC<NavLinkProps> = ({to, children}) => {
 
 export const Navbar = () => {
 	return (
-		<nav className="flex items-center justify-between sticky top-0 z-[9999] pt-10 lg:pt-20 bg-background ml-10">
+		<nav className="flex items-center justify-between sticky top-0 z-[9999] pt-14 lg:pt-20 bg-background">
 			<Link
 				to="/"
-				className="absolute flex items-center gap-4 mx-auto cursor-pointer rounded-full border-2 border-white z-10 max-lg:scale-75 max-lg:-left-14"
+				className="absolute flex items-center gap-4 mx-auto cursor-pointer rounded-full border-2 border-white z-10 max-lg:scale-75 max-lg:-left-14 ml-10 lg:ml-6"
 			>
 				<div className="border-5 border-black rounded-full">
 					<div className="border-5 border-white rounded-full">
-						<div className="border-3 border-black p-6 rounded-full bg-black">
+						<div className="border-3 border-black p-6 rounded-full bg-black ">
 							<Image
 								src={Logo}
 								alt="logo"
 								width={100}
 								height={20}
-								className="invert "
+								className="_dark:invert-0 invert"
 							/>
 						</div>
 					</div>
 				</div>
 			</Link>
 			{/* <div className="container mx-auto"> */}
-			<div className="flex items-center justify-end w-full gap-2 bg-black py-2 pr-6 lg:pr-10 xl:pr-14 2xl:pr-60 shadow-xl lg:ml-6 2xl:ml-16">
+			<div className="flex items-center justify-end w-full gap-2 bg-black py-2 pr-6 lg:pr-10 xl:pr-14 2xl:pr-60 shadow-xl ml-10 xl:ml-16">
 				<NavLink to="sectionMenu">Menu</NavLink>
 				<NavLink to="sectionGallery">Galerija</NavLink>
 				<NavLink to="sectionFoodTruck">Apie mus</NavLink>

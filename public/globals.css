@@ -4,8 +4,11 @@
 	--background: #bdccd4;
 	--foreground: #171717;
 
-	--secondary-background: #b89f91;
-	--secondary-foreground: #ff5421;
+	/* --color-white: #ffffff; */
+	/* --color-black: #000000; */
+
+	--secondary-background: #171717;
+	--secondary-foreground: #bdccd4;
 
 	--color-orangemain: #ff5421;
 }
@@ -19,8 +22,8 @@
 
 /* @media (prefers-color-scheme: dark) {
 	:root {
-		--background: #1d293d;
-		--foreground: #ededed;
+		--background: var(--secondary-background);
+		--foreground: var(--secondary-foreground);
 	}
 } */
 

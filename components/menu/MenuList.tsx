@@ -5,6 +5,7 @@ import MenuCardForm from './MenuCardForm';
 
 const MenuList: React.FC = () => {
 	const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+	console.log('🔥 : menuItems =>', menuItems);
 	const [isCreating, setIsCreating] = useState(false);
 
 	useEffect(() => {

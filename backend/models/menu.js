@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import baseSchemaOptions from './baseSchema.js';
 
 const menuSchema = new mongoose.Schema(
 	{
@@ -22,23 +23,7 @@ const menuSchema = new mongoose.Schema(
 			contentType: String,
 		},
 	},
-	{
-		timestamps: true,
-		toJSON: {
-			virtuals: true,
-			transform: (doc, ret) => {
-				delete ret._id;
-				return ret;
-			},
-		},
-		toObject: {
-			virtuals: true,
-			transform: (doc, ret) => {
-				delete ret._id;
-				return ret;
-			},
-		},
-	}
+	baseSchemaOptions
 );
 
 // Add virtual property for id

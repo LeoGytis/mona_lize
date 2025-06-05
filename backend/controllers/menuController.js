@@ -1,5 +1,6 @@
 import Menu from '../models/menu.js';
 
+// Get all menu items
 const menu_index = async (req, res) => {
 	try {
 		const menus = await Menu.find().sort({createdAt: -1});
@@ -10,7 +11,7 @@ const menu_index = async (req, res) => {
 	}
 };
 
-// Get single menu by ID
+// Get single menu item by ID
 const menu_details = async (req, res) => {
 	try {
 		const menu = await Menu.findById(req.params.id);

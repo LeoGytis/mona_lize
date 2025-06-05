@@ -1,8 +1,7 @@
 'use client';
 
-import Menu from '@/layout/sections/Menu';
+import MenuList from '@/components/menu/MenuList';
 import SectionAboutUs from '@/layout/sections/SectionAboutUs';
-import SectionMenu from '@/layout/sections/SectionMenu';
 // import {auth} from '@/components/auth/config';
 // import {useRouter} from 'next/navigation';
 // import {useAuthState} from 'react-firebase-hooks/auth';
@@ -20,8 +19,10 @@ export default function Home() {
 
 	return (
 		<div className="flex flex-col items-center">
-			<Menu />
-			<SectionMenu />
+			<MenuList />
+
+			{/* <Menu /> */}
+			{/* <SectionMenu /> */}
 			<SectionAboutUs />
 		</div>
 	);

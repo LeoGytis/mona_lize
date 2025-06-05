@@ -3,7 +3,10 @@ import Image from 'next/image';
 
 const SectionAboutMe = () => {
 	return (
-		<section id="sectionAboutMe" className="flex justify-center lg:py-32">
+		<section
+			id="sectionAboutMe"
+			className="flex justify-center py-10 lg:py-32"
+		>
 			<div className="flex w-full max-lg:flex-col gap-8 container">
 				<div className="relative flex-1 aspect-square  lg:scale-150">
 					<Image

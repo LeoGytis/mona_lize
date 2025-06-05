@@ -5,12 +5,14 @@ const SectionFoodTruck = () => {
 	return (
 		<section
 			id="sectionFoodTruck"
-			className="flex justify-center py-16 lg:py-32 bg-background"
+			className="flex justify-center py-10 lg:py-32 bg-background"
 		>
-			<div className="flex w-full gap-8 container">
-				<div className="flex flex-col w-1/2 gap-4">
-					<h1 className="font-semibold">Apie Mus</h1>
-					<p className="text-lg pr-20">
+			<div className="flex max-lg:flex-col w-full gap-8 container">
+				<div className="flex flex-col flex-1 gap-4">
+					<h1 className="font-semibold max-lg:text-center">
+						Apie Mus
+					</h1>
+					<p className="lg:text-lg lg:pr-20 max-lg:text-center">
 						Sveiki atvykę į mūsų skaniausią pica food truck&apos;ą!
 						Mes su aistra ruošiame autentiškas, skaniausias picas iš
 						šviežių ingredientų. Nuo klasikinių margaritų ir
@@ -21,7 +23,7 @@ const SectionFoodTruck = () => {
 						Pamatykite skaniausią picą ant ratų!
 					</p>
 				</div>
-				<div className="relative flex-1 h-96">
+				<div className="relative flex-1 aspect-square">
 					<Image
 						src={foodTruck}
 						alt="Pica food truck"

@@ -17,7 +17,7 @@ const NavLink: React.FC<NavLinkProps> = ({to, children}) => {
 			smooth={true}
 			duration={500}
 			offset={-100}
-			className="px-6 py-2 text-xl transition-colors duration-300 border border-transparent rounded cursor-pointer text-white hover:bg-orange-300/10 hover:border-orange-300"
+			className="px-2 lg:px-6 py-1 lg:py-2 lg:text-xl transition-colors duration-300 border border-transparent rounded-lg cursor-pointer text-white hover:bg-orangemain/10 hover:border-orangemain"
 		>
 			{children}
 		</Link>
@@ -26,10 +26,10 @@ const NavLink: React.FC<NavLinkProps> = ({to, children}) => {
 
 export const Navbar = () => {
 	return (
-		<nav className="flex items-center justify-between sticky top-0 z-[9999] pl-16 pt-20 bg-background ">
+		<nav className="flex items-center justify-between sticky top-0 z-[9999] pt-10 lg:pt-20 bg-background ml-10">
 			<Link
 				to="/"
-				className="absolute flex items-center gap-4 mx-auto cursor-pointer bg-white_ rounded-full border-2 border-white z-10 "
+				className="absolute flex items-center gap-4 mx-auto cursor-pointer rounded-full border-2 border-white z-10 max-lg:scale-75 max-lg:-left-14"
 			>
 				<div className="border-5 border-black rounded-full">
 					<div className="border-5 border-white rounded-full">
@@ -45,8 +45,8 @@ export const Navbar = () => {
 					</div>
 				</div>
 			</Link>
-
-			<div className="flex items-center justify-end w-full gap-2 max-lg:hidden bg-black py-2 pr-64 shadow-xl ml-16">
+			{/* <div className="container mx-auto"> */}
+			<div className="flex items-center justify-end w-full gap-2 bg-black py-2 pr-6 lg:pr-10 xl:pr-14 2xl:pr-60 shadow-xl lg:ml-6 2xl:ml-16">
 				<NavLink to="sectionMenu">Menu</NavLink>
 				<NavLink to="sectionGallery">Galerija</NavLink>
 				<NavLink to="sectionFoodTruck">Apie mus</NavLink>
@@ -62,6 +62,7 @@ export const Navbar = () => {
 					Log out
 				</button>
 			</div>
+			{/* </div> */}
 		</nav>
 	);
 };

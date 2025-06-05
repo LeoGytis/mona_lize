@@ -42,7 +42,7 @@ export const menuRequests = {
 
 	// Delete menu item
 	deleteMenuItem: async (id: string): Promise<void> => {
-		return apiService.deleteGame<void, {id: string}>('/menu', {id});
+		return apiService.delete<void>(`/menu/${id}`);
 	},
 
 	// Get menu items by category

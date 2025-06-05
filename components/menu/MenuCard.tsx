@@ -9,6 +9,7 @@ interface MenuCardProps {
 
 const MenuCard: React.FC<MenuCardProps> = ({item, onUpdate}) => {
 	const [isEditing, setIsEditing] = useState(false);
+	console.log('🔥 : item =>', item);
 
 	const handleSubmit = async (updatedItem: MenuItem) => {
 		try {

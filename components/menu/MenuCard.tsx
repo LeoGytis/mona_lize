@@ -37,7 +37,7 @@ const MenuCard: React.FC<MenuCardProps> = ({item, onUpdate}) => {
 	}
 
 	return (
-		<div className="p-4">
+		<div className="">
 			{item.image && item.image.data && (
 				<div className="mb-10 relative w-full h-48">
 					<Image

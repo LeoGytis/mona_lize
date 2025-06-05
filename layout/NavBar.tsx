@@ -46,23 +46,24 @@ export const Navbar = () => {
 				</div>
 			</Link>
 			{/* <div className="container mx-auto"> */}
-			<div className="flex items-center justify-end w-full gap-2 bg-black py-2 pr-6 lg:pr-10 xl:pr-14 2xl:pr-60 shadow-xl ml-10 xl:ml-16">
-				<NavLink to="sectionMenu">Menu</NavLink>
-				<NavLink to="sectionGallery">Galerija</NavLink>
-				<NavLink to="sectionFoodTruck">Apie mus</NavLink>
+			<div className="flex items-center justify-end w-full gap-2 bg-black py-2  shadow-xl ml-10 xl:ml-16">
+				<div className="container self-end flex justify-end mx-auto lg:mr-[8dvw]">
+					<NavLink to="sectionMenu">Menu</NavLink>
+					<NavLink to="sectionGallery">Galerija</NavLink>
+					<NavLink to="sectionFoodTruck">Apie mus</NavLink>
+				</div>
+				<div className="absolute right-40 top-0 ">
+					<button
+						onClick={() => {
+							signOut(auth);
+							sessionStorage.removeItem('user');
+						}}
+						className="bg-white text-black px-4 py-2 rounded-full hover:bg-orange-500"
+					>
+						Log out
+					</button>
+				</div>
 			</div>
-			<div className="absolute right-40 -top-10">
-				<button
-					onClick={() => {
-						signOut(auth);
-						sessionStorage.removeItem('user');
-					}}
-					className="bg-white text-black px-4 py-2 rounded-full hover:bg-orange-500"
-				>
-					Log out
-				</button>
-			</div>
-			{/* </div> */}
 		</nav>
 	);
 };

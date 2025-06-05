@@ -20,17 +20,6 @@ const MenuCard: React.FC<MenuCardProps> = ({item, onUpdate}) => {
 		}
 	};
 
-	const handleDelete = async () => {
-		if (window.confirm('Are you sure you want to delete this item?')) {
-			try {
-				await menuRequests.deleteMenuItem(item.id);
-				onUpdate();
-			} catch (error) {
-				console.error('Error deleting menu item:', error);
-			}
-		}
-	};
-
 	const handleCancel = () => {
 		setIsEditing(false);
 	};
@@ -41,6 +30,7 @@ const MenuCard: React.FC<MenuCardProps> = ({item, onUpdate}) => {
 				item={item}
 				onSubmit={handleSubmit}
 				onCancel={handleCancel}
+				onUpdate={onUpdate}
 			/>
 		);
 	}
@@ -72,12 +62,6 @@ const MenuCard: React.FC<MenuCardProps> = ({item, onUpdate}) => {
 					className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
 				>
 					Edit
-				</button>
-				<button
-					onClick={handleDelete}
-					className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-				>
-					Delete
 				</button>
 			</div>
 		</div>

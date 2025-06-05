@@ -26,23 +26,38 @@ const NavLink: React.FC<NavLinkProps> = ({to, children}) => {
 
 export const Navbar = () => {
 	return (
-		<nav className="flex items-center justify-between sticky top-0 z-[9999] px-10 py-4 border-b border-orange-400 background shadow-xl bg-black">
+		<nav className="flex items-center justify-between sticky top-0 z-[9999] pl-10 py-4 mt-16">
 			<Link
 				to="/"
-				className="flex items-center gap-4 mx-auto cursor-pointer"
+				className="absolute flex items-center gap-4 mx-auto cursor-pointer bg-white  rounded-full border-2 border-white z-10 "
 			>
-				<Image src={Logo} alt="logo" width={100} height={20} />
+				<div className="border-5 border-black rounded-full">
+					<div className="border-5 border-white rounded-full">
+						<div className="border-3 border-black p-6 rounded-full bg-black">
+							<Image
+								src={Logo}
+								alt="logo"
+								width={100}
+								height={20}
+								className="invert"
+							/>
+						</div>
+					</div>
+				</div>
 			</Link>
 
-			<div className="flex items-center justify-end w-full gap-2 max-lg:hidden">
+			<div className="flex items-center justify-end w-full gap-2 max-lg:hidden bg-black py-2 pr-64 shadow-xl ml-16 border-2 border-black">
 				<NavLink to="sectionMenu">Menu</NavLink>
 				<NavLink to="sectionGallery">Galerija</NavLink>
-				<NavLink to="sectionAboutUs">Apie mus</NavLink>
+				<NavLink to="sectionFoodTruck">Apie mus</NavLink>
+			</div>
+			<div className="absolute right-40 -top-10">
 				<button
 					onClick={() => {
 						signOut(auth);
 						sessionStorage.removeItem('user');
 					}}
+					className="bg-white text-black px-4 py-2 rounded-full hover:bg-orange-500"
 				>
 					Log out
 				</button>

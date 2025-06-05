@@ -1,22 +1,21 @@
 import React, {useState} from 'react';
-import {MenuItem} from '../../service/menuRequests';
+import {MenuItem, menuRequests} from '../../service/menuRequests';
 
 interface MenuCardFormProps {
 	item: MenuItem;
 	onSubmit: (item: MenuItem | FormData) => void;
 	onCancel: () => void;
+	onUpdate: () => void;
 }
 
 const MenuCardForm: React.FC<MenuCardFormProps> = ({
 	item,
 	onSubmit,
 	onCancel,
+	onUpdate,
 }) => {
 	const [formData, setFormData] = useState<MenuItem>(item);
 	const [selectedImage, setSelectedImage] = useState<File | null>(null);
-	const [previewUrl, setPreviewUrl] = useState<string | null>(
-		item.image?.data || null
-	);
 
 	const handleInputChange = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -32,12 +31,6 @@ const MenuCardForm: React.FC<MenuCardFormProps> = ({
 		const file = e.target.files?.[0];
 		if (file) {
 			setSelectedImage(file);
-			// Create preview URL
-			const reader = new FileReader();
-			reader.onloadend = () => {
-				setPreviewUrl(reader.result as string);
-			};
-			reader.readAsDataURL(file);
 		}
 	};
 
@@ -57,6 +50,17 @@ const MenuCardForm: React.FC<MenuCardFormProps> = ({
 		} else {
 			// If no new image, send regular form data
 			onSubmit(formData);
+		}
+	};
+
+	const handleDelete = async () => {
+		if (window.confirm('Are you sure you want to delete this item?')) {
+			try {
+				await menuRequests.deleteMenuItem(item.id);
+				onUpdate();
+			} catch (error) {
+				console.error('Error deleting menu item:', error);
+			}
 		}
 	};
 
@@ -111,15 +115,6 @@ const MenuCardForm: React.FC<MenuCardFormProps> = ({
 						onChange={handleImageChange}
 						className="w-full p-2 border rounded"
 					/>
-					{previewUrl && (
-						<div className="mt-2">
-							<img
-								src={previewUrl}
-								alt="Preview"
-								className="max-w-xs max-h-48 object-contain"
-							/>
-						</div>
-					)}
 				</div>
 			</div>
 			<div className="mt-4 flex gap-2">
@@ -135,6 +130,13 @@ const MenuCardForm: React.FC<MenuCardFormProps> = ({
 					className="bg-gray-500 text-white px-3 py-1 rounded hover:bg-gray-600"
 				>
 					Cancel
+				</button>
+				<button
+					type="button"
+					onClick={handleDelete}
+					className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+				>
+					Delete
 				</button>
 			</div>
 		</form>

@@ -21,7 +21,7 @@ const MenuList: React.FC = () => {
 		}
 	};
 
-	const handleCreate = async (formData: Omit<MenuItem, 'id'>) => {
+	const handleCreate = async (formData: MenuItem | FormData) => {
 		try {
 			await menuRequests.createMenuItem(formData);
 			setIsCreating(false);
@@ -38,14 +38,14 @@ const MenuList: React.FC = () => {
 	return (
 		<div className="container mx-auto p-4">
 			<div className="flex justify-between items-center mb-6">
-				<h1 className="text-2xl font-bold">Menu Management</h1>
+				<h1 className="text-2xl font-bold">Menu</h1>
 				{!isCreating && (
 					<button
 						onClick={() => setIsCreating(true)}
 						className="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 flex items-center gap-2"
 					>
 						<span className="text-xl">+</span>
-						<span>Add New Item</span>
+						<span>Add New</span>
 					</button>
 				)}
 			</div>
@@ -61,11 +61,12 @@ const MenuList: React.FC = () => {
 						}}
 						onSubmit={handleCreate}
 						onCancel={handleCancel}
+						onUpdate={loadMenuItems}
 					/>
 				</div>
 			)}
 
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 				{menuItems.map((item) => (
 					<MenuCard
 						key={item.id}

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, {useState} from 'react';
-import {MenuItem, menuRequests} from '../../service/menuRequests';
+import {MenuItem} from '../../service/menuRequests';
 import MenuCardForm from './MenuCardForm';
 
 interface MenuCardProps {
@@ -11,16 +11,6 @@ interface MenuCardProps {
 const MenuCard: React.FC<MenuCardProps> = ({item, onUpdate}) => {
 	const [isEditing, setIsEditing] = useState(false);
 
-	const handleSubmit = async (updatedItem: MenuItem | FormData) => {
-		try {
-			await menuRequests.updateMenuItem(item.id, updatedItem);
-			setIsEditing(false);
-			onUpdate();
-		} catch (error) {
-			console.error('Error updating menu item:', error);
-		}
-	};
-
 	const handleCancel = () => {
 		setIsEditing(false);
 	};
@@ -29,7 +19,6 @@ const MenuCard: React.FC<MenuCardProps> = ({item, onUpdate}) => {
 		return (
 			<MenuCardForm
 				item={item}
-				onSubmit={handleSubmit}
 				onCancel={handleCancel}
 				onUpdate={onUpdate}
 			/>
@@ -45,22 +34,15 @@ const MenuCard: React.FC<MenuCardProps> = ({item, onUpdate}) => {
 						alt={item.name}
 						fill
 						className="object-cover rounded-lg duration-1000 ease-out transform hover:scale-125"
-						onError={(e) => {
-							console.error('Image failed to load:', e);
-							console.log(
-								'Attempted image src:',
-								e.currentTarget.src
-							);
-						}}
 					/>
 				</div>
 			)}
-			<div className="flex flex-col justify-between gap-2 min-h-36">
-				<h3 className="text-lg font-semibold">{item.name}</h3>
-				<p className="text-gray-600 mb-2">{item.description}</p>
-				<p className="text-lg font-bold mb-6">
-					${item.price.toFixed(2)}
-				</p>
+			<div className="flex flex-col justify-between gap-2 min-h-40 text-xl">
+				<div className="flex flex-col gap-2">
+					<h3 className="font-semibold">{item.name}</h3>
+					<p className="text-gray-700 text-lg">{item.description}</p>
+				</div>
+				<p className="font-bold mb-6">{item.price.toFixed(2)} €</p>
 			</div>
 			<button
 				onClick={() => setIsEditing(true)}

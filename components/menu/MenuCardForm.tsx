@@ -1,16 +1,15 @@
+import {Trash2} from 'lucide-react';
 import React, {useState} from 'react';
 import {MenuItem, menuRequests} from '../../service/menuRequests';
 
 interface MenuCardFormProps {
 	item: MenuItem;
-	onSubmit: (item: MenuItem | FormData) => void;
 	onCancel: () => void;
 	onUpdate: () => void;
 }
 
 const MenuCardForm: React.FC<MenuCardFormProps> = ({
 	item,
-	onSubmit,
 	onCancel,
 	onUpdate,
 }) => {
@@ -37,19 +36,24 @@ const MenuCardForm: React.FC<MenuCardFormProps> = ({
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 
-		if (selectedImage) {
-			// Create FormData for file upload
-			const formDataToSend = new FormData();
-			formDataToSend.append('name', formData.name);
-			formDataToSend.append('description', formData.description);
-			formDataToSend.append('price', formData.price.toString());
-			formDataToSend.append('image', selectedImage);
+		try {
+			if (selectedImage) {
+				// Create FormData for file upload
+				const formDataToSend = new FormData();
+				formDataToSend.append('name', formData.name);
+				formDataToSend.append('description', formData.description);
+				formDataToSend.append('price', formData.price.toString());
+				formDataToSend.append('image', selectedImage);
 
-			// Call onSubmit with FormData
-			onSubmit(formDataToSend);
-		} else {
-			// If no new image, send regular form data
-			onSubmit(formData);
+				await menuRequests.updateMenuItem(item.id, formDataToSend);
+			} else {
+				// If no new image, send regular form data
+				await menuRequests.updateMenuItem(item.id, formData);
+			}
+			onUpdate();
+			onCancel(); // This will close the form
+		} catch (error) {
+			console.error('Error updating menu item:', error);
 		}
 	};
 
@@ -107,37 +111,39 @@ const MenuCardForm: React.FC<MenuCardFormProps> = ({
 					/>
 				</div>
 				<div>
-					<label className="block mb-2">Image</label>
+					<label className="block mb-2">Upload Image</label>
 					<input
 						type="file"
 						name="image"
 						accept="image/*"
 						onChange={handleImageChange}
-						className="w-full p-2 border rounded"
+						className="w-fit p-2 border rounded bg-slate-200 cursor-pointer"
 					/>
 				</div>
 			</div>
-			<div className="mt-4 flex gap-2">
-				<button
-					type="submit"
-					className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-				>
-					Save
-				</button>
-				<button
-					type="button"
-					onClick={onCancel}
-					className="bg-gray-500 text-white px-3 py-1 rounded hover:bg-gray-600"
-				>
-					Cancel
-				</button>
+			<div className="mt-4 flex justify-between">
 				<button
 					type="button"
 					onClick={handleDelete}
-					className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+					className="bg-red-500 text-white font-semibold px-3 py-2 rounded-lg hover:opacity-80 cursor-pointer"
 				>
-					Delete
+					<Trash2 className="size-5" />
 				</button>
+				<div className="flex gap-2">
+					<button
+						type="button"
+						onClick={onCancel}
+						className="bg-slate-400 text-white font-semibold px-4 py-2 rounded-lg hover:opacity-80 cursor-pointer"
+					>
+						Cancel
+					</button>
+					<button
+						type="submit"
+						className="bg-orangemain text-white font-semibold px-5 py-2 rounded-lg hover:opacity-80 cursor-pointer"
+					>
+						Save
+					</button>
+				</div>
 			</div>
 		</form>
 	);

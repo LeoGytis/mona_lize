@@ -2,15 +2,10 @@ import Footer from '@/layout/Footer';
 import Navbar from '@/layout/NavBar';
 import '@/public/globals.css';
 import type {Metadata} from 'next';
-import {Geist, Geist_Mono} from 'next/font/google';
+import {Montserrat} from 'next/font/google';
 
-const geistSans = Geist({
-	variable: '--font-geist-sans',
-	subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-	variable: '--font-geist-mono',
+const montserrat = Montserrat({
+	variable: '--font-montserrat',
 	subsets: ['latin'],
 });
 
@@ -26,9 +21,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-			>
+			<body className={`${montserrat.variable}  antialiased`}>
 				<Navbar />
 				<main className="flex flex-col min-h-dvh bg-background">
 					{children}

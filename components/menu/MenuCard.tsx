@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, {useState} from 'react';
 import {MenuItem, menuRequests} from '../../service/menuRequests';
 import MenuCardForm from './MenuCardForm';
@@ -36,13 +37,14 @@ const MenuCard: React.FC<MenuCardProps> = ({item, onUpdate}) => {
 	}
 
 	return (
-		<div className="bg-white p-4 rounded-lg shadow-md">
+		<div className="p-4">
 			{item.image && item.image.data && (
-				<div className="mb-4">
-					<img
+				<div className="mb-10 relative w-full h-48">
+					<Image
 						src={`data:${item.image.contentType};base64,${item.image.data}`}
 						alt={item.name}
-						className="w-full h-48 object-cover rounded-lg"
+						fill
+						className="object-cover rounded-lg duration-1000 ease-out transform hover:scale-125"
 						onError={(e) => {
 							console.error('Image failed to load:', e);
 							console.log(

@@ -17,7 +17,7 @@ const NavLink: React.FC<NavLinkProps> = ({to, children}) => {
 			smooth={true}
 			duration={500}
 			offset={-100}
-			className="px-6 py-2 text-xl transition-colors duration-300 border border-transparent rounded cursor-pointer hover:bg-orange-300/10 hover:border-orange-300"
+			className="px-6 py-2 text-xl transition-colors duration-300 border border-transparent rounded cursor-pointer text-white hover:bg-orange-300/10 hover:border-orange-300"
 		>
 			{children}
 		</Link>
@@ -26,10 +26,10 @@ const NavLink: React.FC<NavLinkProps> = ({to, children}) => {
 
 export const Navbar = () => {
 	return (
-		<nav className="flex items-center justify-between sticky top-0 z-[9999] pl-10 py-4 mt-16">
+		<nav className="flex items-center justify-between sticky top-0 z-[9999] pl-10 py-4 pt-16 bg-background">
 			<Link
 				to="/"
-				className="absolute flex items-center gap-4 mx-auto cursor-pointer bg-white  rounded-full border-2 border-white z-10 "
+				className="absolute flex items-center gap-4 mx-auto cursor-pointer bg-white_ rounded-full border-2 border-white z-10 "
 			>
 				<div className="border-5 border-black rounded-full">
 					<div className="border-5 border-white rounded-full">
@@ -39,7 +39,7 @@ export const Navbar = () => {
 								alt="logo"
 								width={100}
 								height={20}
-								className="invert"
+								className="invert "
 							/>
 						</div>
 					</div>

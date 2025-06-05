@@ -36,9 +36,8 @@ const MenuList: React.FC = () => {
 	};
 
 	return (
-		<div className="container mx-auto p-4">
+		<div id="sectionMenu" className="container mx-auto p-4">
 			<div className="flex justify-between items-center mb-6">
-				<h1 className="text-2xl font-bold">Menu</h1>
 				{!isCreating && (
 					<button
 						onClick={() => setIsCreating(true)}

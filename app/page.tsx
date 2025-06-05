@@ -22,7 +22,6 @@ export default function Home() {
 		<div className="flex flex-col items-center">
 			<SectionAboutMe />
 			<MenuList />
-
 			<SectionFoodTruck />
 		</div>
 	);

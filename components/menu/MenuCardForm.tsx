@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {MenuItem, menuRequests} from '../../service/menuRequests';
 
 interface MenuCardFormProps {
-	item: MenuItem;
+	item?: MenuItem;
 	onCancel: () => void;
 	onUpdate: () => void;
 }
@@ -13,7 +13,14 @@ const MenuCardForm: React.FC<MenuCardFormProps> = ({
 	onCancel,
 	onUpdate,
 }) => {
-	const [formData, setFormData] = useState<MenuItem>(item);
+	const [formData, setFormData] = useState<MenuItem>(
+		item || {
+			id: 'new',
+			name: '',
+			description: '',
+			price: 0,
+		}
+	);
 	const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
 	const handleInputChange = (
@@ -45,19 +52,29 @@ const MenuCardForm: React.FC<MenuCardFormProps> = ({
 				formDataToSend.append('price', formData.price.toString());
 				formDataToSend.append('image', selectedImage);
 
-				await menuRequests.updateMenuItem(item.id, formDataToSend);
+				if (!item) {
+					await menuRequests.createMenuItem(formDataToSend);
+				} else {
+					await menuRequests.updateMenuItem(item.id, formDataToSend);
+				}
 			} else {
 				// If no new image, send regular form data
-				await menuRequests.updateMenuItem(item.id, formData);
+				if (!item) {
+					await menuRequests.createMenuItem(formData);
+				} else {
+					await menuRequests.updateMenuItem(item.id, formData);
+				}
 			}
 			onUpdate();
 			onCancel(); // This will close the form
 		} catch (error) {
-			console.error('Error updating menu item:', error);
+			console.error('Error saving menu item:', error);
 		}
 	};
 
 	const handleDelete = async () => {
+		if (!item) return;
+
 		if (window.confirm('Are you sure you want to delete this item?')) {
 			try {
 				await menuRequests.deleteMenuItem(item.id);
@@ -117,19 +134,21 @@ const MenuCardForm: React.FC<MenuCardFormProps> = ({
 						name="image"
 						accept="image/*"
 						onChange={handleImageChange}
-						className="w-fit p-2 border rounded bg-slate-200 cursor-pointer"
+						className="w-full p-2 border rounded bg-slate-200 cursor-pointer"
 					/>
 				</div>
 			</div>
 			<div className="mt-4 flex justify-between">
-				<button
-					type="button"
-					onClick={handleDelete}
-					className="bg-red-500 text-white font-semibold px-3 py-2 rounded-lg hover:opacity-80 cursor-pointer"
-				>
-					<Trash2 className="size-5" />
-				</button>
-				<div className="flex gap-2">
+				{item && (
+					<button
+						type="button"
+						onClick={handleDelete}
+						className="bg-red-500 text-white font-semibold px-3 py-2 rounded-lg hover:opacity-80 cursor-pointer"
+					>
+						<Trash2 className="size-5" />
+					</button>
+				)}
+				<div className="flex gap-2 ml-auto">
 					<button
 						type="button"
 						onClick={onCancel}

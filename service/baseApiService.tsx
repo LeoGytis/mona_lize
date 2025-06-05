@@ -7,9 +7,10 @@ export const baseApiService = {
 	): Promise<any> => {
 		try {
 			const token = localStorage.getItem('accessToken');
+			const isFormData = options.body instanceof FormData;
+
 			const headers: HeadersInit = {
-				'Content-Type': 'application/json',
-				// 'Accept-Language': 'lt', // arba en
+				...(isFormData ? {} : {'Content-Type': 'application/json'}),
 				...(token && {Authorization: `Bearer ${token}`}),
 				...options.headers,
 			};
@@ -44,13 +45,22 @@ export const baseApiService = {
 				}
 			}
 
-			const data = await response.json();
-
-			if (!response.ok) {
-				throw new Error(data.message || 'Request failed');
+			// Check if the response is JSON
+			const contentType = response.headers.get('content-type');
+			if (contentType && contentType.includes('application/json')) {
+				const data = await response.json();
+				if (!response.ok) {
+					throw new Error(data.message || 'Request failed');
+				}
+				return data;
+			} else {
+				// Handle non-JSON response
+				const text = await response.text();
+				if (!response.ok) {
+					throw new Error(text || 'Request failed');
+				}
+				return text;
 			}
-
-			return data;
 		} catch (error) {
 			console.error('API Error:', error);
 			throw error;

@@ -5,6 +5,10 @@ export interface MenuItem {
 	name: string;
 	description: string;
 	price: number;
+	image?: {
+		data: string;
+		contentType: string;
+	};
 }
 
 export const menuRequests = {
@@ -20,9 +24,9 @@ export const menuRequests = {
 
 	// Create new menu item
 	createMenuItem: async (
-		menuItem: Omit<MenuItem, 'id'>
+		menuItem: Omit<MenuItem, 'id'> | FormData
 	): Promise<MenuItem> => {
-		return apiService.post<MenuItem, Omit<MenuItem, 'id'>>(
+		return apiService.post<MenuItem, Omit<MenuItem, 'id'> | FormData>(
 			'/menu',
 			menuItem
 		);
@@ -31,9 +35,9 @@ export const menuRequests = {
 	// Update menu item
 	updateMenuItem: async (
 		id: string,
-		menuItem: Partial<MenuItem>
+		menuItem: Partial<MenuItem> | FormData
 	): Promise<MenuItem> => {
-		return apiService.patch<MenuItem, Partial<MenuItem>>(
+		return apiService.patch<MenuItem, Partial<MenuItem> | FormData>(
 			'/menu',
 			id,
 			menuItem

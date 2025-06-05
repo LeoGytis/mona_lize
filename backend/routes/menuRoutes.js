@@ -6,13 +6,14 @@ import {
 	menu_index,
 	menu_update,
 } from '../controllers/menuController.js';
+import upload from '../middleware/upload.js';
 
 const router = express.Router();
 
 router.get('/', menu_index);
 router.get('/:id', menu_details);
-router.post('/', menu_create);
-router.patch('/:id', menu_update);
+router.post('/', upload.single('image'), menu_create);
+router.patch('/:id', upload.single('image'), menu_update);
 router.delete('/:id', menu_delete);
 
 export default router;

@@ -2,9 +2,11 @@ import {baseApiService} from './baseApiService';
 
 export const apiService = {
 	post: async <T, U>(url: string, body: U): Promise<any> => {
+		const isFormData = body instanceof FormData;
 		return baseApiService.request<T>(url, {
 			method: 'POST',
-			body: JSON.stringify(body),
+			body: isFormData ? body : JSON.stringify(body),
+			headers: isFormData ? {} : {'Content-Type': 'application/json'},
 		});
 	},
 
@@ -31,23 +33,17 @@ export const apiService = {
 		id: string | number,
 		body: U
 	): Promise<any> => {
+		const isFormData = body instanceof FormData;
 		return baseApiService.request<T>(`${url}/${id}`, {
 			method: 'PATCH',
-			body: JSON.stringify(body),
+			body: isFormData ? body : JSON.stringify(body),
+			headers: isFormData ? {} : {'Content-Type': 'application/json'},
 		});
 	},
 
 	delete: async <T,>(url: string): Promise<any> => {
 		return baseApiService.request<T>(url, {
 			method: 'DELETE',
-		});
-	},
-
-	// Keep this for backward compatibility if needed
-	deleteGame: async <T, U>(url: string, body: U): Promise<any> => {
-		return baseApiService.request<T>(`${url}`, {
-			method: 'DELETE',
-			body: JSON.stringify(body),
 		});
 	},
 };

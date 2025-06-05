@@ -18,8 +18,8 @@ const menuSchema = new mongoose.Schema(
 			min: 0,
 		},
 		image: {
-			type: String,
-			trim: true,
+			data: String, // Store base64 string
+			contentType: String,
 		},
 	},
 	{

@@ -10,10 +10,11 @@ interface MenuCardProps {
 const MenuCard: React.FC<MenuCardProps> = ({item, onUpdate}) => {
 	const [isEditing, setIsEditing] = useState(false);
 	console.log('🔥 : item =>', item);
+	console.log('🔥 : item.image =>', item.image);
 
-	const handleSubmit = async (updatedItem: MenuItem) => {
+	const handleSubmit = async (updatedItem: MenuItem | FormData) => {
 		try {
-			await menuRequests.updateMenuItem(updatedItem.id, updatedItem);
+			await menuRequests.updateMenuItem(item.id, updatedItem);
 			setIsEditing(false);
 			onUpdate();
 		} catch (error) {
@@ -48,6 +49,22 @@ const MenuCard: React.FC<MenuCardProps> = ({item, onUpdate}) => {
 
 	return (
 		<div className="bg-white p-4 rounded-lg shadow-md">
+			{item.image && item.image.data && (
+				<div className="mb-4">
+					<img
+						src={`data:${item.image.contentType};base64,${item.image.data}`}
+						alt={item.name}
+						className="w-full h-48 object-cover rounded-lg"
+						onError={(e) => {
+							console.error('Image failed to load:', e);
+							console.log(
+								'Attempted image src:',
+								e.currentTarget.src
+							);
+						}}
+					/>
+				</div>
+			)}
 			<h3 className="text-lg font-semibold">{item.name}</h3>
 			<p className="text-gray-600 mb-2">{item.description}</p>
 			<p className="text-lg font-bold mb-2">${item.price.toFixed(2)}</p>

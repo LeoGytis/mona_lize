@@ -13,6 +13,15 @@ const middleware = (app) => {
 	// app.use(express.static('public'));
 	//  Support PUT and PATCH via forms
 	// app.use(methodOverride('_method'));
+
+	// Error handling middleware
+	app.use((err, req, res, next) => {
+		console.error('Error:', err);
+		res.status(500).json({
+			error: err.message || 'Internal Server Error',
+		});
+		next(err);
+	});
 };
 
 export default middleware;

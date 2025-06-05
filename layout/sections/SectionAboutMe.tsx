@@ -8,7 +8,7 @@ const SectionAboutMe = () => {
 			className="flex justify-center py-16 lg:py-32"
 		>
 			<div className="flex w-full gap-8 container">
-				<div className="relative flex-1 h-96_ scale-175">
+				<div className="relative flex-1 h-96_ scale-150">
 					<Image
 						src={foodTruck}
 						alt="Pica food truck"
@@ -18,7 +18,7 @@ const SectionAboutMe = () => {
 				</div>
 				<div className="flex flex-col items-end w-1/2 gap-4 pl-36">
 					<h1 className="font-semibold">Apie Mane</h1>
-					<p className="text-end">
+					<p className="text-end text-lg">
 						Idėja atvežti &quot;Mona Ližė&quot; į Lietuvą gimė 2025
 						metų pradžioje. Net ir gyvenant pokyčių ir iššūkių
 						laikotarpiu, mes nė akimirkai nesudvejojome - žvelgėme

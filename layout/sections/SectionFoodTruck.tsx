@@ -8,9 +8,9 @@ const SectionFoodTruck = () => {
 			className="flex justify-center py-16 lg:py-32 bg-background"
 		>
 			<div className="flex w-full gap-8 container">
-				<div className="flex flex-col items-end w-1/2 gap-4">
-					<h1>Apie Mus</h1>
-					<p className="text-end">
+				<div className="flex flex-col w-1/2 gap-4">
+					<h1 className="font-semibold">Apie Mus</h1>
+					<p className="text-lg pr-20">
 						Sveiki atvykę į mūsų skaniausią pica food truck&apos;ą!
 						Mes su aistra ruošiame autentiškas, skaniausias picas iš
 						šviežių ingredientų. Nuo klasikinių margaritų ir

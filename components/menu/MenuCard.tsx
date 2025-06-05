@@ -55,17 +55,19 @@ const MenuCard: React.FC<MenuCardProps> = ({item, onUpdate}) => {
 					/>
 				</div>
 			)}
-			<h3 className="text-lg font-semibold">{item.name}</h3>
-			<p className="text-gray-600 mb-2">{item.description}</p>
-			<p className="text-lg font-bold mb-2">${item.price.toFixed(2)}</p>
-			<div className="flex gap-2">
-				<button
-					onClick={() => setIsEditing(true)}
-					className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
-				>
-					Edit
-				</button>
+			<div className="flex flex-col justify-between gap-2 min-h-36">
+				<h3 className="text-lg font-semibold">{item.name}</h3>
+				<p className="text-gray-600 mb-2">{item.description}</p>
+				<p className="text-lg font-bold mb-6">
+					${item.price.toFixed(2)}
+				</p>
 			</div>
+			<button
+				onClick={() => setIsEditing(true)}
+				className="bg-yellow-500 text-white px-8 py-2 rounded-lg hover:bg-yellow-600 w-fit"
+			>
+				Edit
+			</button>
 		</div>
 	);
 };

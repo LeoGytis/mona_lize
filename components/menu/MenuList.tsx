@@ -1,3 +1,4 @@
+import {Plus} from 'lucide-react';
 import React, {useEffect, useState} from 'react';
 import {MenuItem, menuRequests} from '../../service/menuRequests';
 import MenuCard from './MenuCard';
@@ -41,9 +42,9 @@ const MenuList: React.FC = () => {
 				{!isCreating && (
 					<button
 						onClick={() => setIsCreating(true)}
-						className="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 flex items-center gap-2"
+						className="bg-orangemain text-white px-4 py-2 rounded-lg hover:bg-amber-500 flex items-center gap-2 font-semibold"
 					>
-						<span className="text-xl">+</span>
+						<Plus className="size-5" />
 						<span>Add New</span>
 					</button>
 				)}

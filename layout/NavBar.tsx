@@ -26,7 +26,7 @@ const NavLink: React.FC<NavLinkProps> = ({to, children}) => {
 
 export const Navbar = () => {
 	return (
-		<nav className="flex items-center justify-between sticky top-0 z-[9999] pl-16 py-4 pt-20 bg-background">
+		<nav className="flex items-center justify-between sticky top-0 z-[9999] pl-16 pt-20 bg-background">
 			<Link
 				to="/"
 				className="absolute flex items-center gap-4 mx-auto cursor-pointer bg-white_ rounded-full border-2 border-white z-10 "

@@ -2,19 +2,19 @@
 
 :root {
 	--background: #bdccd4;
-	/* --background: #1d293d; */
 	--foreground: #171717;
 
 	--secondary-background: #b89f91;
 	--secondary-foreground: #ff5421;
-	--color-greenlight: #ff5421;
+
+	--color-orangemain: #ff5421;
 }
 
 @theme inline {
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
-	--font-sans: var(--font-geist-sans);
-	--font-mono: var(--font-geist-mono);
+
+	--color-orangemain: oklch(82.8% 0.189 84.429);
 }
 
 /* @media (prefers-color-scheme: dark) {

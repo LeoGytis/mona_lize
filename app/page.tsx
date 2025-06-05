@@ -1,5 +1,6 @@
 'use client';
 
+import Menu from '@/layout/sections/Menu';
 import SectionAboutUs from '@/layout/sections/SectionAboutUs';
 import SectionMenu from '@/layout/sections/SectionMenu';
 // import {auth} from '@/components/auth/config';
@@ -19,6 +20,7 @@ export default function Home() {
 
 	return (
 		<div className="flex flex-col items-center">
+			<Menu />
 			<SectionMenu />
 			<SectionAboutUs />
 		</div>

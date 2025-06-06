@@ -15,7 +15,7 @@ const MenuCreate: React.FC<MenuCreateProps> = ({onUpdate}) => {
 
 	return (
 		<>
-			<div className="flex justify-between items-center mb-10">
+			<div className="flex justify-end items-center mb-8">
 				{!isCreating && (
 					<button
 						onClick={() => setIsCreating(true)}

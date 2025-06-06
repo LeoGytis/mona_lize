@@ -1,33 +1,25 @@
 'use client';
-import Logo from '@/public/images/logo_png.png';
-import Image from 'next/image';
+import BorderedLogo from '@/components/Logo';
 
 const Footer = () => {
 	return (
-		<section className="sticky bg-black border-t-2 border-orangemain text-white">
-			<div className="mx-auto max-w-screen-xl flex justify-between items-center text-lg py-16 ">
-				<div className="flex flex-col gap-4">
+		<section className="py-10 text-white bg-black border-t-2 lg:py-32 border-orangemain">
+			<div className="container flex justify-between gap-10 mx-auto lg:items-center lg:text-lg max-lg:flex-col-reverse">
+				<div className="flex flex-col gap-4 max-lg:pl-10">
 					<h3>Paslaugos</h3>
 					<span>Užsakomiei išvykimai</span>
 					<span>Gera nuotaika</span>
 					<span>Edukacijos</span>
 					<span>Trali vali</span>
 				</div>
-				<div className="flex flex-col gap-4">
+				<div className="flex flex-col gap-4 max-lg:pl-10">
 					<h3>Rekvizitai</h3>
 					<span>Imones Kodas: 123456789</span>
 					<span>Swedbank</span>
 					<span>A/S: LTLT157300010158228888</span>
 				</div>
-				<div className="flex flex-col gap-10">
-					<Image
-						src={Logo}
-						alt="logo"
-						width={80}
-						height={80}
-						className="hover:cursor-pointer self-center"
-					/>
-					<div className="flex flex-col gap-2 justify-center items-center">
+				<div className="flex gap-10 max-lg:flex-row-reverse max-lg:justify-end ">
+					<div className="flex flex-col items-center justify-center gap-2">
 						<a href="tel:+37068223555" className="hover:underline ">
 							+370 682 23555
 						</a>
@@ -38,6 +30,7 @@ const Footer = () => {
 							info@monalize.lt
 						</a>
 					</div>
+					<BorderedLogo />
 				</div>
 			</div>
 		</section>

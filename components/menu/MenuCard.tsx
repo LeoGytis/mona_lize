@@ -46,7 +46,7 @@ const MenuCard: React.FC<MenuCardProps> = ({item, onUpdate}) => {
 			</div>
 			<button
 				onClick={() => setIsEditing(true)}
-				className="bg-yellow-500 text-white px-8 py-2 rounded-lg hover:bg-yellow-600 w-fit"
+				className="bg-yellow-500 text-white px-8 py-2 rounded-lg hover:bg-yellow-600 w-fit cursor-pointer"
 			>
 				Edit
 			</button>

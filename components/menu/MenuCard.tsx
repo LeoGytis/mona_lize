@@ -28,25 +28,25 @@ const MenuCard: React.FC<MenuCardProps> = ({item, onUpdate}) => {
 	return (
 		<div className="">
 			{item.image && item.image.data && (
-				<div className="mb-10 relative w-full h-48">
+				<div className="relative w-full h-48 mb-10">
 					<Image
 						src={`data:${item.image.contentType};base64,${item.image.data}`}
 						alt={item.name}
 						fill
-						className="object-cover rounded-lg duration-1000 ease-out transform hover:scale-125"
+						className="object-cover duration-1000 ease-out transform rounded-lg hover:scale-125"
 					/>
 				</div>
 			)}
-			<div className="flex flex-col justify-between gap-2 min-h-40 text-xl">
+			<div className="flex flex-col justify-between gap-2 text-xl min-h-40">
 				<div className="flex flex-col gap-2">
 					<h3 className="font-semibold">{item.name}</h3>
-					<p className="text-gray-700 text-lg">{item.description}</p>
+					<p className="text-lg text-gray-700">{item.description}</p>
 				</div>
-				<p className="font-bold mb-6">{item.price.toFixed(2)} €</p>
+				<p className="mb-6 font-bold">{item.price.toFixed(2)} €</p>
 			</div>
 			<button
 				onClick={() => setIsEditing(true)}
-				className="bg-yellow-500 text-white px-8 py-2 rounded-lg hover:bg-yellow-600 w-fit cursor-pointer"
+				className="px-8 py-2 font-semibold text-white rounded-lg cursor-pointer bg-orangemain hover:opacity-80 w-fit"
 			>
 				Edit
 			</button>

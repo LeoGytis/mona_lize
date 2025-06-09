@@ -1,5 +1,5 @@
 // const BASE_URL = 'http://localhost:3001';
-const BASE_URL = 'https://mona-lize-be.vercel.app';
+const BASE_URL = 'https://mona-lize-backend.vercel.app';
 
 export const baseApiService = {
 	request: async <T,>(

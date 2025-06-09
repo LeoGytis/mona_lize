@@ -44,7 +44,7 @@ export const Navbar = () => {
 						</button>
 					</div>
 				) : (
-					<div className="absolute top-5 right-20 btn-primary">
+					<div className="absolute !px-8 top-2 md:top-5 right-20 btn-primary">
 						<a href="/sign-in">Sign in</a>
 					</div>
 				)}

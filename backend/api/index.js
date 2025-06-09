@@ -14,7 +14,7 @@ connectDB().then(() => {
 	app.listen(3001);
 });
 
-// Apply basic middleware first
+// Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -24,9 +24,9 @@ app.get('/test', (req, res) => {
 	res.json({message: 'Server is working!'});
 });
 
-// Define routes
-app.use('/menu', menuRoutes);
+// Routes
+app.use('/api/v1/menu', menuRoutes);
 
-// Apply error handling middleware last
+// Error middleware
 app.use(notFound);
 app.use(errorHandler);

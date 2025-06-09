@@ -3,7 +3,7 @@ import BorderedLogo from '@/components/Logo';
 
 const Footer = () => {
 	return (
-		<section className="py-10 text-white bg-black border-t-2 lg:py-32 border-orangemain">
+		<section className="py-10 text-white bg-black border-t-2 border-white shadow-t-lg lg:py-32">
 			<div className="container flex justify-between gap-10 mx-auto lg:items-center lg:text-lg max-lg:flex-col-reverse">
 				<div className="flex flex-col gap-4 max-lg:pl-10">
 					<h3>Paslaugos</h3>

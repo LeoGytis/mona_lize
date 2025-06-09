@@ -1,5 +1,6 @@
 'use client';
 import {auth} from '@/components/auth/config';
+import {useRouter} from 'next/navigation';
 import {useState} from 'react';
 import {useCreateUserWithEmailAndPassword} from 'react-firebase-hooks/auth';
 
@@ -8,6 +9,7 @@ const SignUp = () => {
 	const [password, setPassword] = useState('');
 	const [createUserWithEmailAndPassword] =
 		useCreateUserWithEmailAndPassword(auth);
+	const router = useRouter();
 
 	const handleSignUp = async () => {
 		try {
@@ -17,6 +19,7 @@ const SignUp = () => {
 				localStorage.setItem('token', token);
 				setEmail('');
 				setPassword('');
+				router.push('/');
 			}
 		} catch (e) {
 			console.error(e);
@@ -24,29 +27,31 @@ const SignUp = () => {
 	};
 
 	return (
-		<div className="min-h-screen flex items-center justify-center bg-gray-900">
-			<div className="bg-gray-800 p-10 rounded-lg shadow-xl w-96">
-				<h1 className="text-white text-2xl mb-5">Sign Up</h1>
-				<input
-					type="email"
-					placeholder="Email"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-					className="w-full p-3 mb-4 bg-gray-700 rounded outline-none text-white placeholder-gray-500"
-				/>
-				<input
-					type="password"
-					placeholder="Password"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-					className="w-full p-3 mb-4 bg-gray-700 rounded outline-none text-white placeholder-gray-500"
-				/>
-				<button
-					onClick={handleSignUp}
-					className="w-full p-3 bg-indigo-600 rounded text-white hover:bg-indigo-500"
-				>
-					Sign Up
-				</button>
+		<div className="flex items-center justify-center py-10 lg:py-32">
+			<div className="border-4 border-black rounded-lg lg:w-1/3">
+				<div className="flex flex-col gap-8 p-10 bg-black border-2 border-white rounded-lg shadow-lg">
+					<h1 className="text-white">Sign Up</h1>
+					<input
+						type="email"
+						placeholder="Email"
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+						className="w-full p-3 text-white placeholder-gray-500 bg-gray-700 rounded outline-none"
+					/>
+					<input
+						type="password"
+						placeholder="Password"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+						className="w-full p-3 text-white placeholder-gray-500 bg-gray-700 rounded outline-none"
+					/>
+					<button
+						onClick={handleSignUp}
+						className="w-full btn-primary"
+					>
+						Sign Up
+					</button>
+				</div>
 			</div>
 		</div>
 	);

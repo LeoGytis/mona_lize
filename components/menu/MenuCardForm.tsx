@@ -102,7 +102,7 @@ const MenuCardForm: React.FC<MenuCardFormProps> = ({
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className="bg-white p-4 rounded-lg shadow-md"
+			className="p-4 bg-white rounded-lg shadow-md"
 			encType="multipart/form-data"
 		>
 			<div className="grid grid-cols-1 gap-4">
@@ -144,7 +144,7 @@ const MenuCardForm: React.FC<MenuCardFormProps> = ({
 				<div>
 					<label className="block mb-2">Image</label>
 					{formData.image && !selectedImage && (
-						<div className="mb-4 relative w-full h-48">
+						<div className="relative w-full h-48 mb-4">
 							<Image
 								src={`data:${formData.image.contentType};base64,${formData.image.data}`}
 								alt={formData.name}
@@ -158,7 +158,7 @@ const MenuCardForm: React.FC<MenuCardFormProps> = ({
 						name="image"
 						accept="image/*"
 						onChange={handleImageChange}
-						className="w-full p-2 border rounded bg-slate-200 cursor-pointer"
+						className="w-full p-2 border rounded cursor-pointer bg-slate-200"
 					/>
 					{selectedImage && (
 						<p className="mt-2 text-sm text-gray-600">
@@ -167,12 +167,12 @@ const MenuCardForm: React.FC<MenuCardFormProps> = ({
 					)}
 				</div>
 			</div>
-			<div className="mt-4 flex justify-between">
+			<div className="flex justify-between mt-4">
 				{item && (
 					<button
 						type="button"
 						onClick={handleDelete}
-						className="bg-red-500 text-white font-semibold px-3 py-2 rounded-lg hover:opacity-80 cursor-pointer"
+						className="px-3 py-2 font-semibold text-white bg-red-500 rounded-lg cursor-pointer hover:opacity-80"
 					>
 						<Trash2 className="size-5" />
 					</button>
@@ -181,14 +181,11 @@ const MenuCardForm: React.FC<MenuCardFormProps> = ({
 					<button
 						type="button"
 						onClick={onCancel}
-						className="bg-slate-400 text-white font-semibold px-4 py-2 rounded-lg hover:opacity-80 cursor-pointer"
+						className="btn-primary !bg-slate-400"
 					>
 						Cancel
 					</button>
-					<button
-						type="submit"
-						className="bg-orangemain text-white font-semibold px-5 py-2 rounded-lg hover:opacity-80 cursor-pointer"
-					>
+					<button type="submit" className="btn-primary">
 						Save
 					</button>
 				</div>

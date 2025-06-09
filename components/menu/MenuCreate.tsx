@@ -15,11 +15,11 @@ const MenuCreate: React.FC<MenuCreateProps> = ({onUpdate}) => {
 
 	return (
 		<>
-			<div className="flex justify-end items-center mb-8">
+			<div className="flex items-center justify-end mb-8">
 				{!isCreating && (
 					<button
 						onClick={() => setIsCreating(true)}
-						className="bg-orangemain text-white px-4 py-2 rounded-lg hover:opacity-80 flex items-center gap-2 font-semibold cursor-pointer"
+						className="flex items-center gap-2 btn-primary"
 					>
 						<Plus className="size-5" />
 						<span>Add New</span>

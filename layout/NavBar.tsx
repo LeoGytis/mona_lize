@@ -1,7 +1,6 @@
 'use client';
-import {auth} from '@/components/auth/config';
+import {useAuth} from '@/components/auth/AuthContext';
 import BorderedLogo from '@/components/Logo';
-import {signOut} from 'firebase/auth';
 import {Link} from 'react-scroll';
 
 interface NavLinkProps {
@@ -24,6 +23,8 @@ const NavLink: React.FC<NavLinkProps> = ({to, children}) => {
 };
 
 export const Navbar = () => {
+	const {user, signOut} = useAuth();
+
 	return (
 		<nav className="flex items-center justify-between sticky top-0 z-[9999] pt-14 lg:pt-20 bg-background">
 			<div className="absolute left-0 ml-10 max-lg:-left-14 lg:ml-6">
@@ -36,17 +37,17 @@ export const Navbar = () => {
 					<NavLink to="sectionGallery">Galerija</NavLink>
 					<NavLink to="sectionFoodTruck">Apie mus</NavLink>
 				</div>
-				<div className="absolute top-5 right-20 ">
-					<button
-						onClick={() => {
-							signOut(auth);
-							localStorage.removeItem('token');
-						}}
-						className="px-4 py-2 text-white font-semibold bg-orangemain rounded-lg hover:opacity-80"
-					>
-						Log out
-					</button>
-				</div>
+				{user ? (
+					<div className="absolute top-5 right-20 ">
+						<button onClick={signOut} className="btn-primary">
+							Log out
+						</button>
+					</div>
+				) : (
+					<div className="absolute top-5 right-20 btn-primary">
+						<a href="/sign-in">Sign in</a>
+					</div>
+				)}
 			</div>
 		</nav>
 	);

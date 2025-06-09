@@ -36,13 +36,13 @@ export const Navbar = () => {
 					<NavLink to="sectionGallery">Galerija</NavLink>
 					<NavLink to="sectionFoodTruck">Apie mus</NavLink>
 				</div>
-				<div className="absolute top-0 right-40 ">
+				<div className="absolute top-5 right-20 ">
 					<button
 						onClick={() => {
 							signOut(auth);
-							sessionStorage.removeItem('user');
+							localStorage.removeItem('token');
 						}}
-						className="px-4 py-2 text-black bg-white rounded-full hover:bg-orange-500"
+						className="px-4 py-2 text-white font-semibold bg-orangemain rounded-lg hover:opacity-80"
 					>
 						Log out
 					</button>

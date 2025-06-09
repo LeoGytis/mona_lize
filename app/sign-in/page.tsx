@@ -13,11 +13,15 @@ const SignIn = () => {
 	const handleSignIn = async () => {
 		try {
 			const res = await signInWithEmailAndPassword(email, password);
-			console.log({res});
-			sessionStorage.setItem('user', 'true');
-			setEmail('');
-			setPassword('');
-			router.push('/');
+			if (res?.user) {
+				// Get the Firebase ID token
+				const token = await res.user.getIdToken();
+				// Store the token
+				localStorage.setItem('token', token);
+				setEmail('');
+				setPassword('');
+				router.push('/');
+			}
 		} catch (e) {
 			console.error(e);
 		}

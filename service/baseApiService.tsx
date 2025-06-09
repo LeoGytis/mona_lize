@@ -2,12 +2,9 @@
 const BASE_URL = 'https://mona-lize-backend.vercel.app';
 
 export const baseApiService = {
-	request: async <T,>(
-		url: string,
-		options: RequestInit = {}
-	): Promise<any> => {
+	request: async <T,>(url: string, options: RequestInit = {}): Promise<T> => {
 		try {
-			const token = localStorage.getItem('accessToken');
+			const token = localStorage.getItem('token');
 			const isFormData = options.body instanceof FormData;
 
 			const headers: HeadersInit = {
@@ -22,28 +19,10 @@ export const baseApiService = {
 			});
 
 			if (response.status === 401) {
-				try {
-					const refreshToken = localStorage.getItem('refreshToken');
-					const refreshResponse = await fetch(
-						`${BASE_URL}/auth/refresh`,
-						{
-							method: 'POST',
-							headers: {'Content-Type': 'application/json'},
-							body: JSON.stringify({refreshToken}),
-						}
-					);
-
-					if (!refreshResponse.ok) throw new Error('Refresh failed');
-
-					const {accessToken} = await refreshResponse.json();
-					localStorage.setItem('accessToken', accessToken);
-
-					return baseApiService.request<T>(url, options);
-				} catch (error) {
-					localStorage.clear();
-					window.location.href = '/login';
-					throw error;
-				}
+				// Handle unauthorized access
+				localStorage.removeItem('token');
+				window.location.href = '/sign-in';
+				throw new Error('Unauthorized access');
 			}
 
 			// Check if the response is JSON
@@ -53,14 +32,14 @@ export const baseApiService = {
 				if (!response.ok) {
 					throw new Error(data.message || 'Request failed');
 				}
-				return data;
+				return data as T;
 			} else {
 				// Handle non-JSON response
 				const text = await response.text();
 				if (!response.ok) {
 					throw new Error(text || 'Request failed');
 				}
-				return text;
+				return text as unknown as T;
 			}
 		} catch (error) {
 			console.error('API Error:', error);

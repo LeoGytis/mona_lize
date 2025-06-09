@@ -12,10 +12,12 @@ const SignUp = () => {
 	const handleSignUp = async () => {
 		try {
 			const res = await createUserWithEmailAndPassword(email, password);
-			console.log({res});
-			sessionStorage.setItem('user', 'true');
-			setEmail('');
-			setPassword('');
+			if (res?.user) {
+				const token = await res.user.getIdToken();
+				localStorage.setItem('token', token);
+				setEmail('');
+				setPassword('');
+			}
 		} catch (e) {
 			console.error(e);
 		}

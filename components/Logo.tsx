@@ -1,4 +1,4 @@
-import LogoImage from '@/public/images/logo_png.png';
+import LogoImage from '@/public/images/logo_black.jpg';
 
 import Image from 'next/image';
 import {Link} from 'react-scroll';
@@ -19,7 +19,6 @@ const BorderedLogo = () => {
 							alt="logo"
 							width={100}
 							height={20}
-							className="_dark:invert-0 invert"
 						/>
 					</div>
 				</div>

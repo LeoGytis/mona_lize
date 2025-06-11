@@ -35,10 +35,7 @@ const MenuCard: React.FC<MenuCardProps> = ({item, onUpdate}) => {
 	return (
 		<div ref={elementRef}>
 			{item.image && item.image.data && (
-				<div
-					ref={elementRef}
-					className="relative w-full h-48 mb-6 overflow-hidden rounded-lg md:mb-10"
-				>
+				<div className="relative w-full h-48 mb-6 overflow-hidden rounded-lg md:mb-10">
 					<div
 						className={`w-full h-full transition-all duration-1000 ease-out transform scale-100 ${
 							isIntersecting

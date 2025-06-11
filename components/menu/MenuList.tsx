@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {MenuItem, menuRequests} from '../../service/menuRequests';
-import {useAuth} from '../auth/AuthContext';
+import {useAuth} from '../../utils/AuthContext';
 import MenuCard from './MenuCard';
 import MenuCreate from './MenuCreate';
 

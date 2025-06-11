@@ -1,7 +1,7 @@
-import {AuthProvider} from '@/components/auth/AuthContext';
 import Footer from '@/layout/Footer';
 import {Navbar} from '@/layout/NavBar';
 import '@/public/globals.css';
+import {AuthProvider} from '@/utils/AuthContext';
 import type {Metadata} from 'next';
 import {Montserrat} from 'next/font/google';
 

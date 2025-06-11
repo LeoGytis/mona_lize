@@ -1,6 +1,6 @@
 'use client';
-import {useAuth} from '@/components/auth/AuthContext';
 import BorderedLogo from '@/components/Logo';
+import {useAuth} from '@/utils/AuthContext';
 import {Link} from 'react-scroll';
 
 interface NavLinkProps {

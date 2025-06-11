@@ -1,8 +1,8 @@
-import {useIntersectionObserver} from '@/hooks/useIntersectionObserver';
+import {useIntersectionObserver} from '@/utils/useIntersectionObserver';
 import Image from 'next/image';
 import React, {useState} from 'react';
 import {MenuItem} from '../../service/menuRequests';
-import {useAuth} from '../auth/AuthContext';
+import {useAuth} from '../../utils/AuthContext';
 import MenuCardForm from './MenuCardForm';
 
 interface MenuCardProps {

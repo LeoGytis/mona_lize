@@ -1,4 +1,5 @@
 import foodTruck from '@/public/images/foodtruck02.png';
+import papuga from '@/public/images/papuga.png';
 import Image from 'next/image';
 
 const SectionFoodTruck = () => {
@@ -22,6 +23,14 @@ const SectionFoodTruck = () => {
 						skonį ir šilumą į jūsų renginius ir susirinkimus.
 						Pamatykite skaniausią picą ant ratų!
 					</p>
+					<div className="relative w-20 h-64">
+						<Image
+							src={papuga}
+							alt="Pica food truck"
+							fill
+							className="object-contain"
+						/>
+					</div>
 				</div>
 				<div className="relative flex-1 aspect-square">
 					<Image

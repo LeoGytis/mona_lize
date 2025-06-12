@@ -2,8 +2,8 @@ import express from 'express';
 import {postImage} from '../controllers/imageController';
 import {upload} from '../middleware/upload';
 
-const Router = express.Router();
+const router = express.Router();
 
-Router.post('/', upload.single('image'), postImage);
+router.post('/', upload.single('image'), postImage);
 
-module.exports = {Router};
+module.exports = router;

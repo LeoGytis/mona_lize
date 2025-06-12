@@ -16,6 +16,7 @@ export const baseApiService = {
 			const response = await fetch(`${BASE_URL}${url}`, {
 				...options,
 				headers,
+				credentials: 'include',
 			});
 
 			if (response.status === 401) {

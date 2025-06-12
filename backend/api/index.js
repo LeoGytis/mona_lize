@@ -26,6 +26,7 @@ app.get('/test', (req, res) => {
 
 // Routes
 app.use('/api/v1/menu', menuRoutes);
+app.use('/api/v1/image', imageRoutes);
 
 // Error middleware
 app.use(notFound);

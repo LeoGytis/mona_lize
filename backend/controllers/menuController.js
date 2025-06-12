@@ -1,4 +1,4 @@
-import Menu from '../models/menu.js';
+import Menu from '../models/menuSchema.js';
 
 // Get all menu items
 const menu_index = async (req, res) => {

@@ -16,15 +16,17 @@ connectDB().then(() => {
 });
 
 // CORS configuration
-// const corsOptions = {
-// 	origin: ['http://localhost:3000', 'https://mona-lize.vercel.app'],
-// 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-// 	allowedHeaders: ['Content-Type', 'Authorization'],
-// 	credentials: true,
-// };
+const corsOptions = {
+	origin: ['http://localhost:3000', 'https://mona-lize.vercel.app'],
+	methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+	allowedHeaders: ['Content-Type', 'Authorization'],
+	credentials: true,
+};
 
 // Middleware
 app.use(cors(corsOptions));
+
+// app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(morgan('dev'));

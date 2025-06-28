@@ -15,7 +15,7 @@ const NavLink: React.FC<NavLinkProps> = ({to, children}) => {
 			smooth={true}
 			duration={500}
 			offset={-100}
-			className="px-2 py-1 text-white transition-colors duration-300 border border-transparent rounded-lg cursor-pointer lg:px-6 lg:py-2 lg:text-xl hover:bg-orangemain/10 hover:border-orangemain"
+			className="px-2 py-1 text-white rounded-lg border border-transparent transition-colors duration-300 cursor-pointer lg:px-6 lg:py-2 lg:text-xl hover:bg-orangemain/10 hover:border-orangemain"
 		>
 			{children}
 		</Link>
@@ -27,12 +27,12 @@ export const Navbar = () => {
 
 	return (
 		<nav className="flex items-center justify-between sticky top-0 z-[9999] pt-14 lg:pt-20 bg-background">
-			<div className="absolute top-4 ml-2 lg:ml-6 z-50">
+			<div className="absolute top-4 z-50 ml-2 lg:ml-6">
 				<BorderedLogo />
 			</div>
 
-			<div className="relative items-center justify-end w-full gap-2 py-6 md:py-8 bg-black shadow-xl xl:ml-16 ml-8">
-				<div className="absolute top-1/2 -translate-y-1/2 container flex justify-end mx-auto">
+			<div className="relative gap-2 justify-end items-center py-6 ml-8 w-full bg-black shadow-xl md:py-8 xl:ml-16">
+				<div className="flex absolute top-1/2 gap-2 justify-end pr-4 mx-auto w-full -translate-y-1/2 md:pr-16">
 					<NavLink to="sectionMenu">Menu</NavLink>
 					<NavLink to="sectionGallery">Galerija</NavLink>
 					<NavLink to="sectionFoodTruck">Apie mus</NavLink>

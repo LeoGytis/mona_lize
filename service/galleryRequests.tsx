@@ -12,6 +12,6 @@ export const imageRequests = {
 		const formData = new FormData();
 		formData.append('image', imageFile);
 
-		return apiService.post<ImageResponse, FormData>('/images', formData);
+		return apiService.post<ImageResponse, FormData>('/image', formData);
 	},
 };

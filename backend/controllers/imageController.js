@@ -19,4 +19,4 @@ const postImage = expressHandler(async (req, res) => {
 	}
 });
 
-module.exports = {postImage};
+export {postImage};

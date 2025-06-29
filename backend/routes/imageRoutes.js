@@ -1,9 +1,10 @@
 import express from 'express';
-import {postImage} from '../controllers/imageController';
-import {upload} from '../middleware/upload';
+import {postImage} from '../controllers/imageController.js';
+import {verifyToken} from '../middleware/auth.js';
+import upload from '../middleware/upload.js';
 
 const router = express.Router();
 
-router.post('/', upload.single('image'), postImage);
+router.post('/', verifyToken, upload.single('image'), postImage);
 
-module.exports = router;
+export default router;

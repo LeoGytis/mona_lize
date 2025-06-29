@@ -4,6 +4,7 @@ import express from 'express';
 import morgan from 'morgan';
 import errorHandler from '../middleware/error.js';
 import notFound from '../middleware/notFound.js';
+import imageRoutes from '../routes/imageRoutes.js';
 import menuRoutes from '../routes/menuRoutes.js';
 import {connectDB} from '../utils/mongo.js';
 
@@ -11,7 +12,7 @@ const app = express();
 
 // Connect to MongoDB
 connectDB().then(() => {
-	console.log('🔥 SERVER IS RUNNING');
+	console.log('🔥🔥🔥 SERVER IS RUNNING 🔥🔥🔥');
 	app.listen(3001);
 });
 
@@ -36,7 +37,7 @@ app.get('/test', (req, res) => {
 
 // Routes
 app.use('/api/v1/menu', menuRoutes);
-// app.use('/api/v1/image', imageRoutes);
+app.use('/api/v1/image', imageRoutes);
 
 // Error middleware
 app.use(notFound);

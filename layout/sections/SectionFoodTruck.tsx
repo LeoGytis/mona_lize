@@ -23,21 +23,21 @@ const SectionFoodTruck = () => {
 						skonį ir šilumą į jūsų renginius ir susirinkimus.
 						Pamatykite skaniausią picą ant ratų!
 					</p>
-					<div className="relative w-20 h-64">
-						<Image
-							src={papuga}
-							alt="Pica food truck"
-							fill
-							className="object-contain"
-						/>
-					</div>
+					<Image
+						src={papuga}
+						alt="Parrot"
+						width={80}
+						className="h-auto"
+					/>
 				</div>
 				<div className="relative flex-1 aspect-square">
 					<Image
 						src={foodTruck}
 						alt="Pica food truck"
 						fill
-						objectFit="cover"
+						priority
+						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+						className="object-cover"
 					/>
 				</div>
 			</div>

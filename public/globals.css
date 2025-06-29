@@ -46,5 +46,5 @@ h3 {
 }
 
 .btn-primary {
-	@apply px-4 py-2 font-semibold text-white transition-all duration-300 rounded-lg cursor-pointer bg-orangemain hover:opacity-80;
+	@apply px-4 py-2 font-semibold text-white rounded-md cursor-pointer bg-black border-2 border-white hover:opacity-70;
 }

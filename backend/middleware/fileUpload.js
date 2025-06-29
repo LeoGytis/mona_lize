@@ -10,7 +10,7 @@ const fileFilter = (req, file, cb) => {
 };
 
 // Create multer upload instance with memory storage
-const upload = multer({
+const fileUpload = multer({
 	storage: multer.memoryStorage(),
 	fileFilter: fileFilter,
 	limits: {
@@ -18,4 +18,4 @@ const upload = multer({
 	},
 });
 
-export default upload;
+export default fileUpload;

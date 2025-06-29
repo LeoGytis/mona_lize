@@ -7,7 +7,7 @@ import {
 	menu_update,
 } from '../controllers/menuController.js';
 import {verifyToken} from '../middleware/auth.js';
-import upload from '../middleware/upload.js';
+import fileUpload from '../middleware/fileUpload.js';
 
 const router = express.Router();
 
@@ -16,8 +16,8 @@ router.get('/', menu_index);
 router.get('/:id', menu_details);
 
 // Protected routes (auth required)
-router.post('/', verifyToken, upload.single('image'), menu_create);
-router.patch('/:id', verifyToken, upload.single('image'), menu_update);
+router.post('/', verifyToken, fileUpload.single('image'), menu_create);
+router.patch('/:id', verifyToken, fileUpload.single('image'), menu_update);
 router.delete('/:id', verifyToken, menu_delete);
 
 export default router;

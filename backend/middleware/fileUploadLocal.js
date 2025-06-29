@@ -7,12 +7,13 @@ const __dirname = path.dirname(__filename);
 
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
-		// Use absolute path to ensure the uploads directory is found
-		const uploadsPath = path.join(__dirname, '..', 'uploads');
-		cb(null, uploadsPath);
+		// Use absolute path to save files in a gallery folder at the root level
+		const galleryPath = path.join(__dirname, '..', '..', 'gallery');
+		cb(null, galleryPath);
 	},
 	filename: (req, file, cb) => {
-		cb(null, Date.now() + file.originalname);
+		const extension = path.extname(file.originalname);
+		cb(null, `image-${Date.now()}${extension}`);
 	},
 });
 
@@ -25,7 +26,7 @@ const fileFilter = (req, file, cb) => {
 	}
 };
 
-const uploadLocal = multer({
+const fileUploadLocal = multer({
 	storage: storage,
 	fileFilter: fileFilter,
 	limits: {
@@ -33,4 +34,4 @@ const uploadLocal = multer({
 	},
 });
 
-export default uploadLocal;
+export default fileUploadLocal;
